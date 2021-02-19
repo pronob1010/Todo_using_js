@@ -4,8 +4,9 @@ let clerBtn = document.getElementById('clearBtn');
 let filter = document.getElementById("task_filter");
 let taskInput = document.getElementById("new_task");
 
-form.addEventListener('submit', addtask);
 
+// ADD TASK
+form.addEventListener('submit', addtask);
 function addtask(e) {
     if (taskInput.value === "") {
         alert('Add Task first...');
@@ -26,8 +27,8 @@ function addtask(e) {
 }
 
 
+// REMOVE SINGLE TASK
 taskList.addEventListener('click', removeTask);
-
 function removeTask(e) {
     if (e.target.hasAttribute("href")) {
         if (confirm("Are you sure ? ")) {
@@ -36,3 +37,20 @@ function removeTask(e) {
             }
         }
     }
+
+
+// REMOVE ALL TASK
+clerBtn.addEventListener('click', removeAllTask);
+
+function removeAllTask(e){
+    // console.log("clicked");
+    // slower
+    // taskList.innerHTML = "";
+
+    // faster
+    while(taskList.firstChild){
+        taskList.removeChild(taskList.firstChild);
+    }
+}
+
+
