@@ -38,7 +38,7 @@ function removeTask(e) {
     if (e.target.hasAttribute("href")) {
         if (confirm("Are you sure ? ")) {
             let ele = e.target.parentElement;
-            ele.remove(); 
+            ele.remove();
             // console.log(ele);
 
             removeFromLocalStorage(ele);
@@ -59,6 +59,10 @@ function removeAllTask(e) {
     while (taskList.firstChild) {
         taskList.removeChild(taskList.firstChild);
     }
+
+    // remove from local Storage
+    localStorage.clear()
+
 }
 
 
@@ -117,7 +121,7 @@ function getTasks(e) {
 }
 
 // REMOVE_FROM_LOCAL_STORAGE
-function removeFromLocalStorage(takskElement){
+function removeFromLocalStorage(takskElement) {
 
     let tasks;
     if (localStorage.getItem('tasks') === null) {
@@ -130,10 +134,10 @@ function removeFromLocalStorage(takskElement){
     li.removeChild(li.lastChild);
 
     tasks.forEach((task, index) => {
-        if(li.textContent.trim()===task){
-            task.splice(index, 1);
+        if (li.textContent.trim() === task) {
+            tasks.splice(index, 1);
         }
     });
-}
 
-localStorage.setItem('tasks', JSON.stringify(tasks));
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
