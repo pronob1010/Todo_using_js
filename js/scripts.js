@@ -26,6 +26,8 @@ function addtask(e) {
         // ADD TASK TO LOCAL STORAGE 
         storeTask(taskInput.value);
         taskInput.value = "";
+
+        document.getElementById('task_text').innerHTML="Task list :";
     }
     e.preventDefault();
 }
@@ -62,6 +64,8 @@ function removeAllTask(e) {
 
     // remove from local Storage
     localStorage.clear()
+    document.getElementById('task_text').innerHTML="No task added..";
+
 
 }
 
@@ -103,6 +107,9 @@ function getTasks(e) {
     let tasks;
     if (localStorage.getItem('tasks') === null) {
         tasks = [];
+
+        document.getElementById('task_text').innerHTML="No task added..";
+        
     } else {
         tasks = JSON.parse(localStorage.getItem('tasks'));
     }
@@ -132,6 +139,7 @@ function removeFromLocalStorage(takskElement) {
 
     let li = takskElement;
     li.removeChild(li.lastChild);
+
 
     tasks.forEach((task, index) => {
         if (li.textContent.trim() === task) {
